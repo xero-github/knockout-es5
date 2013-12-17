@@ -7,6 +7,8 @@
 (function(global, undefined) {
     'use strict';
 
+    var ko;
+
     // Model tracking
     // --------------
     //
@@ -41,8 +43,7 @@
             throw new Error('When calling ko.track, you must pass an object as the first parameter.');
         }
 
-        var ko = this,
-            allObservablesForObject = getAllObservablesForObject(obj, true);
+        var allObservablesForObject = getAllObservablesForObject(obj, true);
         propertyNames = propertyNames || Object.getOwnPropertyNames(obj);
 
         propertyNames.forEach(function(propertyName) {
@@ -300,13 +301,14 @@
     function prepareExports() {
         if (typeof module !== 'undefined') {
             // Node.js case - load KO and WeakMap modules synchronously
-            var ko = require('knockout'),
-                WM = require('weakmap');
+            var WM = require('weakmap');
+            ko = require('knockout');
             attachToKo(ko);
             weakMapFactory = function() { return new WM(); };
             module.exports = ko;
         } else if ('ko' in global) {
             // Non-module case - attach to the global instance, and assume a global WeakMap constructor
+            ko = global.ko;
             attachToKo(global.ko);
             weakMapFactory = function() { return new global.WeakMap(); };
         }
