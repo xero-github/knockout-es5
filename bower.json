@@ -1,6 +1,6 @@
 {
   "name": "knockout-es5",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "homepage": "https://github.com/xero-github/knockout-es5",
   "authors": [
     "Steve Sanderson"
@@ -12,8 +12,17 @@
   ],
   "license": "MIT",
   "ignore": [
+    "**/*.md",
     "**/.*",
+    "Gemfile*",
+    "gh-pages",
+    "grunt",
+    "Gruntfile.js",
+    "lib",
     "node_modules",
-    "bower_components"
+    "package.json",
+    "spec",
+    "src",
+    "test"
   ]
 }
